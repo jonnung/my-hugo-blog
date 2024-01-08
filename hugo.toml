@@ -1,0 +1,237 @@
+baseURL = 'https://jonnung.dev/'
+languageCode = 'ko-kr'
+title = '조은우 기술 블로그'
+
+hasCJKLanguage = true
+paginate = 18
+
+disqusShortname = ""
+
+[mediaTypes.'application/x-ndjson']
+  suffixes = ['ndjson']
+
+
+[outputs]
+  home = ["HTML", "Algolia"]
+
+[outputFormats]
+  [outputFormats.Algolia]
+    baseName = 'algolia'
+    isPlainText = true
+    notAlternative = true
+    mediaType = 'application/x-ndjson'
+
+[Params]
+  description = "Seven Demo"
+
+  enableSearch = true
+
+  omitCategoryOnMenu = false
+  categoryName = "Category"
+
+  showCodeCopyButton = true
+
+  disableToTop = false
+  disableToBottom = false
+
+  [Params.head]
+    # Put custom css file in the assets folder, not in the static folder.
+    customCSS = "css/custom.css"
+
+  [Params.home]
+    # Customize the type of content to display up-to-date,
+    # and display all content with 'IsPage=true' if not.
+    # eg: showContentTypes = ["posts", "blogs"]
+    showContentTypes = ["posts", "doc"]
+
+  # description = "记录学习、生活的个人博客网站"
+
+  # App icon config
+  [Params.app]
+    # optional site title override for the app when added to an iOS home screen or Android launcher
+    title = "Seven Demo"
+    # whether to omit favicon resource links
+    noFavicon = false
+    # modern SVG favicon to use in place of older style .png and .ico files
+    svgFavicon = "/favicon.svg"
+    # Safari mask icon color
+    iconColor = "#ffffff"
+    # Android browser theme color
+    themeColor = "#ffffff"
+
+  # LOGO
+  [Params.logo]
+    # Image logo or Text logo
+    # Recommended to set image as logo. (prefer)
+    img = "/images/logo.svg"
+    img_dark = "/images/logo-footer.svg"
+
+    # max height not greater than 56 (px). default: 56 (px)
+    customLogoHeight = '56'
+    customLogoWidth = '120'
+    text = ""
+
+  # Copyright
+  [Params.copyright]
+    owner = "Seven"
+    start_year = "2022"
+
+  # Article Meta
+  [Params.articleMeta]
+    enableAuthor = false
+    disableDate = false
+    disableModifiedDate = false
+    disableCountWords = false
+    disableReadTime = false
+    disableHero = false
+    disableToc = false
+
+    # Note: only works if waline or twikoo is enabled.
+    enablePageView = true
+
+  # Society
+  [Params.society]
+    # If the provided society does not meet your requirements, you can add custom ones.
+    # eg: Add "extra_social.html" in the "layout/partials/" directory of your project.
+    # customSocial = "extra_social.html"
+
+    [Params.society.email]
+      enable = true
+      url = "linzhanqi123@gmail.com"
+    [Params.society.github]
+      enable = true
+      url = "https://github.com/mrhelloboy/hugo-theme-seven-demo"
+    [Params.society.facebook]
+      enable = true
+      url = ""
+    [Params.society.x]  # old twitter
+      enable = true
+      url = ""
+    [Params.society.wechat]
+      enable = true
+      OrcodeUrl = ["/images/society/wechat/wechat.jpg"]
+
+
+  # Search-Algolia
+  [Params.algolia]
+    # Type of content. see: https://gohugo.io/content-management/types/
+    type = ["posts", "doc"]
+    # like pages variables. see: https://gohugo.io/variables/page/
+    vars = ["title", "description", "permalink"]
+    # Front Matter Variables.
+    # see: https://gohugo.io/content-management/front-matter/#front-matter-variables
+    params = ["tags"]
+
+    app_id = "995JRM5ZAU"
+    api_key = "4a1095e4b8c96d2baee42d4c64b16afa"
+    index = "hugo_theme_seven_demo"
+    # see: https://www.algolia.com/doc/api-reference/widgets/snippet/js/#about
+    snippet_attr = "description"
+    # see: https://www.algolia.com/doc/api-reference/widgets/highlight/js/#examples
+    highlight_attr = "title"
+
+  # Comments
+  [Params.comment]
+    enable = true
+    # Note: only works if waline or twikoo is enabled.
+    enableCounts = true
+    [Params.comment.waline]
+      enable = true
+      serverURL = "https://seven-demo.comment.supcat.cn/.netlify/functions/comment"
+      lang = "en"
+      reaction = true
+      search = true
+    [Params.comment.twikoo]
+      enable = false
+      envID = "https://celebrated-youtiao-8a8d79.netlify.app/.netlify/functions/twikoo"
+      path = ""
+      lang = "en"
+      region = ""
+
+  # Analytics
+  [Params.analytics]
+    [Params.analytics.goatcounter]
+      enable = true
+      code = "seven-demo"
+
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false
+      [markup.goldmark.parser.attribute]
+        block = false
+
+  [markup.tableOfContents]
+    endLevel = 3
+    startLevel = 2
+
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+
+[menu]
+  [[menu.main]]
+    name = "Doc"
+    pre = ""
+    url = "/doc/"
+    weight = 10
+  [[menu.main]]
+    name = "Posts"
+    pre = "pen-tool"
+    url = "/posts/"
+    weight = 20
+  [[menu.main]]
+    name = "Archive"
+    url = "/archive"
+    weight = 30
+  [[menu.main]]
+    name = "Goods"
+    pre = ""
+    url = "/goods/"
+    weight = 40
+  [[menu.main]]
+    name = "Releases"
+    pre = "releases"
+    weight = 50
+  [[menu.main]]
+    identifier = "comments-with-waline"
+    name = 'with waline'
+    url = 'https://seven-demo.supcat.cn/'
+    parent = 'Releases'
+    weight = 1
+  [[menu.main]]
+    name = 'with twikoo'
+    url = 'https://seven-demo-with-twikoo.netlify.app/'
+    parent = 'Releases'
+    weight = 2
+
+[module]
+ # Recommend Chinese users to use this proxy configuration
+ # proxy = 'https://goproxy.cn,direct'
+ [[module.imports]]
+   path = 'github.com/mrhelloboy/seven'
+ [module.hugoVersion]
+   extended = false
+   min      = "0.112.0"
+ [[module.mounts]]
+   source = "assets"
+   target = "assets"
+ [[module.mounts]]
+   source = "hugo_stats.json"
+   target = "assets/watching/hugo_stats.json"
+
+[build]
+ writeStats = true
+ [[build.cachebusters]]
+   source = "assets/watching/hugo_stats\\.json"
+   target = "styles\\.css"
+ [[build.cachebusters]]
+   source = "(postcss|tailwind)\\.config\\.js"
+   target = "css"
+ [[build.cachebusters]]
+   source = "assets/.*\\.(js|ts|jsx|tsx)"
+   target = "js"
+ [[build.cachebusters]]
+   source = "assets/.*\\.(.*)$"
+   target = "$1"
