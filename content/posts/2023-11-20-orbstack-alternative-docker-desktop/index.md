@@ -3,7 +3,7 @@ title: "OrbStack: MacOS 사용자를 위한 Docker Desktop 대체재"
 date: 2023-11-20T17:39:10+09:00
 draft: false
 toc: false
-image: "/images/posts/2023-11-20-orbstack-alternative-docker-desktop.png"
+image: "/images/posts/docker_and_developer.png"
 tags:
   - docker
   - dev-tool
@@ -50,8 +50,7 @@ OrbStack은 모든 컨테이너에 `container-name.orb.local` 형식의 도메�
 
 [https://orb.local/](https://orb.local/) Index 페이지에 접속하면 현재 실행중인 모든 컨테이너의 도메인 링크를 확인할 수 있습니다.  
 
-![](./orbstack_local_domain.png)
-
+![](orbstack_local_domain.png)
 
 #### 2. 호스트 네트워킹 지원
 OrbStack은 호스트 네트워킹 기능을 제공합니다. 이 기능을 통해 Docker 컨테이너는 호스트 머신의 네트워크 스택을 직접 사용할 수 있게 되어, 결과적으로 호스트의 IP와 포트를 바로 사용할 수 있습니다. 이는 포트 관리를 단순화하고 여러 컨테이너가 같은 네트워크 설정을 공유할 수 있게 해, 개발 환경 구축에 큰 도움이 됩니다.  
