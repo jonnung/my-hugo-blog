@@ -21,4 +21,6 @@ make isntall
 
 
 # 검색 엔진 업데이트
-
+```
+make search
+```

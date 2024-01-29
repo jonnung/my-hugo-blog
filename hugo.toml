@@ -124,9 +124,9 @@ disqusShortname = "jonnung"
 
     app_id = "PQ4EX48LC6"
     api_key = "ba2d668c30d3e3d83cb6843323a41869"
-    index = "local_jonnung_blog"
+    index = "prod_jonnung_blog"
     # see: https://www.algolia.com/doc/api-reference/widgets/snippet/js/#about
-    snippet_attr = "content"
+    snippet_attr = "description"
     # see: https://www.algolia.com/doc/api-reference/widgets/highlight/js/#examples
     highlight_attr = "title"
 
