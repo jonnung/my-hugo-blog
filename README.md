@@ -1,6 +1,8 @@
 조은우 기술 블로그
 ---
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fa9c88ed-c549-4503-814d-e6c88610973b/deploy-status)](https://app.netlify.com/sites/fervent-carson-e6161b/deploys)
+
 # 설치
 ```
 # 테마 모듈 설치 및 NPM packages.json 생성packages.json
