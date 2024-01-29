@@ -117,10 +117,10 @@ disqusShortname = "jonnung"
     # Type of content. see: https://gohugo.io/content-management/types/
     type = ["posts", "doc"]
     # like pages variables. see: https://gohugo.io/variables/page/
-    vars = ["title", "description", "permalink"]
+    vars = ["title", "date", "description", "permalink", "image"]
     # Front Matter Variables.
     # see: https://gohugo.io/content-management/front-matter/#front-matter-variables
-    params = ["tags"]
+    params = ["tags", "categories"]
 
     app_id = "PQ4EX48LC6"
     api_key = "ba2d668c30d3e3d83cb6843323a41869"
