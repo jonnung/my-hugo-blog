@@ -181,10 +181,10 @@ disqusShortname = "jonnung"
     pre = "pen-tool"
     url = "/posts/"
     weight = 20
-  # [[menu.main]]
-  #   name = "Archive"
-  #   url = "/archive"
-  #   weight = 30
+  [[menu.main]]
+    name = "Weekly Log"
+    url = "/categories/weekly-log/"
+    weight = 30
   # [[menu.main]]
   #   name = "Goods"
   #   pre = ""
