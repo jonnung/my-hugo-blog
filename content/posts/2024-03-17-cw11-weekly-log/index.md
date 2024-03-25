@@ -6,7 +6,7 @@ tags:
   - weekly-log
 categories:
   - weekly log
-description: 한 주 동안 GetPocket에 쌓인 글을 읽고, 기술 컨퍼런스 영상을 시청하고 정리한 내용을 정리했습니다.   
+description: 지난 2024년 2월에 Kafka Streams(ksqlDB)를 활용한 이벤트 기반의 알림 시스템을 개발했는데 다른 회사에서 Kafka를 어떻게 활용하고 있을지 궁금했습니다. 
 url: /weekly-log/2024/03/17/2024-cw11/
 ---
 
