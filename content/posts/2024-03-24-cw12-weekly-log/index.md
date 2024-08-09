@@ -8,6 +8,7 @@ categories:
   - weekly log
 description: 종종 Stacked Changes라는 말과 Graphite가 좋다는 이야기는 들어본 적이 있었는데, 구체적으로 어떤 것일지 찾아보진 않았습니다. 우연히 올라온 글을 읽고 비슷한 고민과 불편함을 느꼈었기 때문에 흥미를 갖고 알아보게 되었습니다. 
 url: /weekly-log/2024/03/24/2024-cw12/
+draft: true
 ---
 
 # Pocket Pick
