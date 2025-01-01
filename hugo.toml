@@ -87,7 +87,7 @@ disqusShortname = "jonnung"
     disableToc = false
 
     # Note: only works if waline or twikoo is enabled.
-    enablePageView = true
+    enablePageView = false
 
   # Society
   [Params.society]
@@ -134,7 +134,7 @@ disqusShortname = "jonnung"
   [Params.comment]
     enable = true
     # Note: only works if waline or twikoo is enabled.
-    enableCounts = true
+    enableCounts = false
     [Params.comment.waline]
       enable = false
       serverURL = "https://seven-demo.comment.supcat.cn/.netlify/functions/comment"
@@ -181,15 +181,15 @@ disqusShortname = "jonnung"
     pre = "pen-tool"
     url = "/posts/"
     weight = 20
-  [[menu.main]]
-    name = "Weekly Log"
-    url = "/categories/weekly-log/"
-    weight = 30
   # [[menu.main]]
-  #   name = "Goods"
-  #   pre = ""
-  #   url = "/goods/"
-  #   weight = 40
+  #   name = "Weekly Log"
+  #   url = "/categories/weekly-log/"
+  #   weight = 30
+  [[menu.main]]
+    name = "Archive"
+    pre = ""
+    url = "/archive/"
+    weight = 40
   # [[menu.main]]
   #   name = "Releases"
   #   pre = "releases"
@@ -241,4 +241,6 @@ disqusShortname = "jonnung"
   [services.googleAnalytics]
     ID = 'UA-43871004-5'
 
+  [services.disqus]
+    shortname = "jonnung"
 
