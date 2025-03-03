@@ -1,0 +1,125 @@
+{{ define "main" }}
+  {{ $allPages := .Site.Pages }}
+  {{ with .Site.Params.home.showContentTypes }}
+    {{ $allPages = where $allPages "Type" "in" . }}
+  {{ end }}
+  {{ $lastestPosts := first 5 (where $allPages "IsPage" true) }}
+  {{ $lastestPostsLen := len $lastestPosts }}
+
+
+  <section x-data="{ loadNum: 1 }" class="mx-auto flex w-full max-w-250">
+    <div class="flex w-full px-5 md:space-x-3">
+      <!-- Posts Index -->
+      <div
+        id="tags-container"
+        class="hidden md:block md:h-full md:w-1/6 lg:w-1/5">
+        <div class="sticky top-[152px] flex w-full">
+          <div
+            x-cloak
+            x-data="{
+              divHeight: window.innerHeight - 152 - 141 - 20,
+              isResized: false
+            }"
+            x-init="$nextTick(()=>{ divHeight = window.innerHeight - $el.getBoundingClientRect().top - $refs.footer.offsetHeight - 20 })"
+            @resize.window="isResized = true;"
+            x-effect="()=> {
+              if (isResized) {
+                divHeight = window.innerHeight - $el.getBoundingClientRect().top - $refs.footer.offsetHeight - 20;
+                isResized = false;
+              }
+            }"
+            :style="{ height: divHeight >= 540 ? divHeight + 'px' : '540px'}"
+            class="hs-index-number flex w-full flex-col items-start justify-center space-y-10 p-6 text-3xl">
+            <!-- <p><strong x-text="divHeight"></strong> px</p> -->
+            {{ range seq 1 (len $lastestPosts) }}
+              <p
+                class="pl-3"
+                x-cloak
+                :class="{
+                  'animate-pingOnce': loadNum == {{ . }},
+                  'text-gray-900': loadNum == {{ . }}, 
+                  'dark:text-gray-300': loadNum == {{ . }}, 
+                  'text-gray-400': loadNum != {{ . }},
+                  'dark:text-gray-600': loadNum != {{ . }},
+                }">
+                0{{ . }}
+              </p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Posts -->
+      <div
+        class="mt-5 flex w-full flex-col space-y-12 md:w-5/6 md:space-y-10 lg:w-4/5">
+        {{ range $idx, $post := $lastestPosts }}
+          <div
+            x-intersect.margin.-50%.0="loadNum = {{ $idx | add 1 }}"
+            class="flex space-x-7 p-1 md:p-4">
+            <!-- Date & Title & Image  -->
+            <div
+              x-data="{ isLoaded: false }"
+              class="group flex w-full flex-col space-y-5 md:w-2/3 md:space-y-7">
+              <div
+                class="hs-content-meta flex items-center justify-start space-x-2 text-sm text-gray-600 dark:text-gray-500">
+                <p>{{ $post.Date.Format "2006/01/02" }}</p>
+                <div class="size-1 rounded-full bg-red-800"></div>
+                <p>{{ index .Params.categories 0 }}</p>
+              </div>
+              <a
+                href="{{ $post.Permalink }}"
+                class="hs-content-title text-4xl font-bold group-hover:text-[--hs-text-color-hover] dark:text-gray-300"
+                >{{ $post.Title }}</a
+              >
+
+              <div
+                class="h-60 w-full"
+                x-intersect.threshold.70="isLoaded = true;">
+                {{ with resources.Get $post.Params.image }}
+                  <div
+                    x-show="!isLoaded"
+                    x-cloak
+                    class="flex h-full w-full animate-pulse items-center justify-center rounded-md bg-gray-300 dark:bg-gray-700">
+                    <svg
+                      class="h-10 w-10 text-gray-200 dark:text-gray-600"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 18">
+                      <path
+                        d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                    </svg>
+                  </div>
+                  <img
+                    x-show="isLoaded"
+                    x-cloak
+                    :src="'{{ .Permalink }}'"
+                    :alt="'{{ $post.Title }}'"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full home-cover rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.35)]" />
+                {{ end }}
+              </div>
+            </div>
+            <!-- Summary -->
+            <div
+              class="hidden flex-col justify-center space-y-3 border-l-[1px] border-l-gray-200 p-6 text-start dark:border-l-gray-800 md:flex md:w-1/3">
+              <p
+                class="hs-summary-title text-xl font-bold text-gray-800 underline decoration-[--hs-decoration-color] decoration-4 underline-offset-4 dark:text-gray-400">
+                {{ T "summary" }}
+              </p>
+              <div
+                class="hs-summary line-clamp-[10] text-pretty tracking-wide text-gray-700 dark:text-gray-500">
+                {{ with $post.Description }}
+                  <p>{{- . -}}</p>
+                {{ else }}
+                  {{- $post.Summary -}}
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

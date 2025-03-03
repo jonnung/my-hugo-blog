@@ -1,0 +1,101 @@
+<!-- favicon -->
+{{- if not .Site.Params.app.noFavicon -}}
+  {{- with .Site.Params.app.svgFavicon -}}
+    <link rel="icon" href="{{ . }}" />
+  {{- else -}}
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  {{- end -}}
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  {{- with .Site.Params.app.iconColor -}}
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="{{ . }}" />
+  {{- end -}}
+  {{- if eq .Site.Params.enablePWA true -}}
+    <link rel="manifest" href="/site.webmanifest" />
+  {{- end -}}
+{{- end -}}
+
+
+<!-- hook before css -->
+{{ with resources.Get "css/hook_before.css" }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ else }}
+    {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $opts := dict "inlineImports" true }}
+{{ if and .Site.Params.search.enable .Site.Params.search.algolia.app_id }}
+  <!-- algoria css -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.0.0/themes/reset-min.css"
+    integrity="sha256-2AeJLzExpZvqLUxMfcs+4DWcMwNfpnjUeAAvEtPr0wU="
+    crossorigin="anonymous" />
+
+  {{ with resources.Get "css/search.css" | postCSS $opts }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ else }}
+      {{ with . | minify | fingerprint | resources.PostProcess }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+      {{ end }}
+    {{ end }}
+
+  {{ end }}
+
+{{ end }}
+
+
+<!-- comments -->
+{{ if and .Site.Params.comment.enable .Site.Params.comment.waline.enable }}
+  {{ with resources.Get "css/waline.css" | postCSS $opts }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ else }}
+      {{ with . | minify | fingerprint | resources.PostProcess }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+<!-- theme css -->
+{{ with resources.Get "css/styles.css" | postCSS $opts }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ else }}
+    {{ with . | minify | fingerprint | resources.PostProcess }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+<!-- hook after css -->
+{{ with resources.Get "css/hook_after.css" }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ else }}
+    {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+<!-- custom css 추가 -->
+{{ with resources.Get "css/custom.css" | postCSS $opts }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ else }}
+    {{ with . | minify | fingerprint | resources.PostProcess }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
