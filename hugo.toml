@@ -132,7 +132,7 @@ disqusShortname = "jonnung"
 
   # Comments
   [Params.comment]
-    enable = true
+    enable = false
     # Note: only works if waline or twikoo is enabled.
     enableCounts = false
     [Params.comment.waline]
