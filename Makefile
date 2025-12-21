@@ -19,4 +19,12 @@ install:
 .PHONY: search
 search:
 	algolia objects import prod_jonnung_blog -F ./public/algolia.ndjson -p 'default'
-	
+
+.PHONY: new
+new:
+	@./scripts/new-post.sh $(TITLE)
+
+.PHONY: format
+format:
+	@./scripts/format-post.sh $(FILE)
+
