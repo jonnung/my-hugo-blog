@@ -9,7 +9,7 @@ tags:
 categories:
   - dev
 description: "AI 코딩 에이전트를 쓰다 보니 자연스럽게 tmux를 배우게 된 이야기. 세션을 유지하고 작업을 격리하는 데 tmux가 어떻게 쓸모 있었는지."
-image: ""
+image: "/images/posts/tmux-cover.jpg"
 ---
 두 달 정도 Openclaw[^1]와 놀아보면서 그동안 자동화하고 싶었던 사소한 일들이나 개인 프로젝트에 확실히 속도감이 붙었다.  
 특히 그 과정에서 PM 에이전트[^2]와 아이디어를 구체화하고 작업 계획을 세운 다음, 실제 구현은 Claude Code(아니면 Opencode)에게 `plan.md` 같은 프롬프트를 전달하는 방식을 많이 썼다.  
