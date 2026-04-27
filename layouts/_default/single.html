@@ -1,0 +1,56 @@
+{{ define "main" }}
+<style>
+  .post-cover {
+    margin: 1.2rem 0 2rem;
+  }
+  .post-cover img {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+</style>
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">{{ .Title }}</h1>
+                {{ $configDateFormat := .Site.Params.dateFormat | default ":date_medium" }}
+                {{ with .Date }}
+                {{ $ISO_time := dateFormat "2006-01-02T15:04:05-07:00" . }}
+                <div class="post-meta">
+                    <time datetime="{{ $ISO_time }}" itemprop="datePublished"> {{ . | time.Format $configDateFormat }} </time>
+                </div>
+                {{ end }}
+            </header>
+            {{ with .Params.image }}
+            {{ $src := . }}
+            {{ with resources.Get . }}
+                {{ $src = .RelPermalink }}
+            {{ else }}
+                {{ $src = $src | relURL }}
+            {{ end }}
+            <figure class="post-cover">
+                <img src="{{ $src }}" alt="{{ $.Title }}" loading="eager" decoding="async" />
+            </figure>
+            {{ end }}
+            {{ partial "toc.html" .}}
+            <div class="page-content">
+                {{ .Content }}
+            </div>
+        </article>
+        {{- partial "comments.html" . -}}
+    </main>
+</div>
+{{ if .Store.Get "hasMermaid" }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  const isDark = document.documentElement.classList.contains('dark') ||
+    (!document.documentElement.classList.contains('light') &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches);
+  mermaid.initialize({ startOnLoad: true, theme: isDark ? 'dark' : 'default' });
+</script>
+{{ end }}
+{{ end }}
