@@ -1,0 +1,8 @@
+[build]
+  command = "hugo --gc --minify -d public"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.128.0"
+  GO_VERSION = "1.22.10"
+  MISE_TRUSTED_CONFIG_PATHS = "/opt/build/repo/.mise.toml"
