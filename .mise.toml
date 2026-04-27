@@ -1,3 +1,3 @@
 [tools]
-hugo = "0.128.0"
+"asdf:NeoHsu/asdf-hugo" = "extended_0.128.0"
 go = "1.22.10"

@@ -1,5 +1,9 @@
 module github.com/jonnung/my-hugo-blog
 
-go 1.22
+go 1.22.0
 
-require github.com/mrhelloboy/seven v1.7.5 // indirect
+toolchain go1.22.10
+
+require (
+	github.com/hugo-sid/hugo-blog-awesome v1.21.0 // indirect
+)
