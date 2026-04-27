@@ -21,8 +21,6 @@ paginate = 18
 [services]
   [services.googleAnalytics]
     ID = "UA-43871004-5"
-  [services.disqus]
-    shortname = "jonnung"
 
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
