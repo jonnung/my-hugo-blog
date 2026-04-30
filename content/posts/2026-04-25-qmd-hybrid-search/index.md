@@ -28,6 +28,8 @@ image: "/images/posts/qmd-hybrid-search-cover.png"
 여러 마크다운 문서가 저장된 폴더를 하나의 컬렉션으로 묶어서 키워드 검색, 의미 검색, LLM 리랭킹까지 지원한다.  
 특히 AI와 옵시디언을 함께 관리하고자 한다면, grep보다 훨씬 정확하게 원하는 문서를 찾을 수도? 있다.  
 
+{{< github-repo "tobi/qmd" "로컬 마크다운 문서를 BM25·임베딩·LLM 재순위로 함께 검색하는 CLI." >}}
+
 ---
 
 ## 키워드 검색의 한계
